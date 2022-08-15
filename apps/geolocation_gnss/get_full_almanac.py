@@ -4,7 +4,7 @@ import requests
 # Type your token, available at https://www.loracloud.com/portal/geolocation/token_management
 YOUR_TOKEN = 'your token here'
 
-url = 'https://gls.loracloud.com/api/v3/almanac/full'
+url = 'https://mgs.loracloud.com/api/v1/almanac/full'
 my_header = {'Ocp-Apim-Subscription-Key': YOUR_TOKEN}
 res = requests.get(url, headers=my_header)
 print(res)
