@@ -4,22 +4,27 @@ This folder contains the files describing the node-red application server code.
 
 ## Install & Configure
 
-This Application Server needs the following to be installed first:
+This Application Server needs the following the folloing steps:
 
-- Node-red
-- semtech-wsp-apps/node-red-contrib-loracloud-utils
-  - and the dependencies of this package
+1. install Node-red
+  - make sure the following are installed as well
+  - semtech-wsp-apps/node-red-contrib-loracloud-utils@1.4.0 and 
+  - the dependencies of this package
 
 The install procedure for these is described [here](https://lora-developers.semtech.com/build/software/lora-basics/lora-basics-for-end-nodes/developer-walk-through/?url=application_server.html#setup). Be careful to **NOT** import the examples for End Nodes Demo flow.
 
 Instead of importing the End Nodes Demo flow, import the files *modem.json* and *geolocation.json* available in the *geolocation_application_server/* directory.
 
-The web page also indicates how to [configure the flow](https://lora-developers.semtech.com/build/software/lora-basics/lora-basics-for-end-nodes/developer-walk-through/?url=application_server.html#configure-the-flow) concerning the MQTT connections with LoRaWAN Network Servers and LoRa Cloud.
+2.configure the MQTT connectiosn with the Lorawan Network Servers and Lora Cloud.
+
+Here indicates how to [configure the flow](https://lora-developers.semtech.com/build/software/lora-basics/lora-basics-for-end-nodes/developer-walk-through/?url=application_server.html#configure-the-flow) concerning the MQTT connections with LoRaWAN Network Servers and LoRa Cloud.
 Follow the same procedure but for the flow distributed in this folder.
 
 This application server needs to use both *LoRa Cloud Geolocation* and *LoRa Cloud Device & Application Services*.
 Obtaining both *LoRa Cloud Device & Application Services* token and URL is explained in the web page here-before.
 The *LoRa Cloud Geolocation* token and URL are also available on the LoRa Cloud account, but in *LoRa Cloud Geolocation* section instead of *LoRa Cloud Device & Application Services*.
+
+Note: with the latest loracloud service,  *LoRa Cloud Geolocation* and *LoRa Cloud Device & Application Services* have been renamed to 'LoRa Cloud Modem & Geolocation'. You may still get 2 tokens when you try to generate a new one. Both of them would work as long as proper permissions are given.
 
 ### Maps
 
@@ -38,6 +43,10 @@ The meaning concerning the different maps is provided here-after.
 When executing the Application Server instance, it is important to ensure that there is no other Application Server is monitoring the same devices. This can be the case if the examples from *semtech-wsp-apps/node-red-contrib-loracloud-utils* have been installed previously.
 
 If this is the case, the flows corresponding to the examples from *semtech-wsp-apps/node-red-contrib-loracloud-utils* must be disabled (refer to the [doc](https://nodered.org/docs/user-guide/editor/workspace/flows#enabling-or-disabling-a-flow) for the procedure).
+
+After version 1.6.2 of node-red-contrib-loracloud-utils, the LoRa Cloud Devices & Application Services has been renamed and codes in this repository may lead to error. Please try to 
+- install the version 1.4.0 or 
+- just change the name of node `loracloud-utils-connectors-das-parser` to `loracloud-utils-connectors-mgs-parser` and delete node `loracloud-utils-connectors-activity-in` in *modem.json*
 
 ## Usage
 
