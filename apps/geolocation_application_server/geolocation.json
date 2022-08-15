@@ -12,7 +12,7 @@
         "z": "a6d3ba07.ce0cc8",
         "name": "",
         "links": [
-            "9def56e2.ac2f4"
+            "824bf5d53ca5406d"
         ],
         "x": 315,
         "y": 520,
@@ -182,11 +182,12 @@
         "type": "function",
         "z": "a6d3ba07.ce0cc8",
         "name": "Prepare GNSS request",
-        "func": "const api = \"api/v1/device/send\";\n\nmsg.url = `${global.get('das_url')}/${api}`;\nmsg.method = \"POST\";\nmsg.headers = {\n    'Authorization': global.get('das_token'),\n    'Content-Type': 'application/json',\n};\n\nmsg.data = msg.payload;\nmsg.data.result_information = {\"nav_message\": msg.payload.data};\nmsg.payload = msg.payload.das_query;\n\n\nreturn msg;",
+        "func": "const api = \"api/v1/device/send\";\n\nmsg.url = `${global.get('mgs_url')}/${api}`;\nmsg.method = \"POST\";\nmsg.headers = {\n    'Authorization': global.get('mgs_token'),\n    'Content-Type': 'application/json',\n};\n\nmsg.data = msg.payload;\nmsg.data.result_information = {\"nav_message\": msg.payload.data};\nmsg.payload = msg.payload.das_query;\n\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 390,
         "y": 1044,
         "wires": [
@@ -250,13 +251,15 @@
         "id": "e8d36585.c10dc",
         "type": "debug",
         "z": "a6d3ba07.ce0cc8",
-        "name": "LR1110 Tracker environmental data",
+        "name": "LR11xx Tracker environmental data",
         "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
         "complete": "payload",
         "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
         "x": 1130,
         "y": 580,
         "wires": []
@@ -329,8 +332,9 @@
         "type": "link out",
         "z": "a6d3ba07.ce0cc8",
         "name": "",
+        "mode": "link",
         "links": [
-            "baa45081.65a3b"
+            "6492707eba8de78b"
         ],
         "x": 1255,
         "y": 920,
@@ -372,6 +376,9 @@
         "func": "// This block exists because the LoRa Cloud Device & Application Services is returning value 0\n// for the dnlink.port field.\n// This is the trigger that this downlink has to be transported on application level\n\nfor (const eui in msg.payload.result){\n    if ((msg.payload.result.dnlink !== null) && (msg.payload.result.dnlink.port === 0)){\n        msg.payload.result.dnlink.port = global.get('port_gnss_push_solver_message_port');\n    }\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
         "x": 890,
         "y": 1044,
         "wires": [
@@ -443,9 +450,9 @@
         "id": "594ee252.63e204",
         "type": "comment",
         "z": "a6d3ba07.ce0cc8",
-        "name": "Link it to LoRa Cloud Device & Application Services parser input",
+        "name": "Link it to Modem & Geolocation Services parser input",
         "info": "",
-        "x": 1130,
+        "x": 1090,
         "y": 880,
         "wires": []
     },
@@ -453,9 +460,9 @@
         "id": "539d298.46045d8",
         "type": "comment",
         "z": "a6d3ba07.ce0cc8",
-        "name": "Link it from stream of LoRa Cloud Device & Application Services parser",
+        "name": "Link it from stream of Stream from Modem & Geolocation Services parser",
         "info": "",
-        "x": 270,
+        "x": 280,
         "y": 560,
         "wires": []
     },
@@ -795,6 +802,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 830,
         "y": 964,
         "wires": [
