@@ -103,6 +103,8 @@ Some LoRaWAN parameters specific to this application are also available:
 | --------------------- | -------- |
 | `LORAWAN_CONFIRMED_MSG_ON` | Request a confirmation message or not |
 
+The code works for LR1120 EVKs too but have to change the `LR1110_FW_VERSION` to 0x0101 in `main_geolocation_gnss.c`
+
 ## 3. Build
 
 Before building be sure to set the GNSS assistance position as described in the
@@ -155,7 +157,7 @@ The *VALUE* field for this demonstration is composed of the following fields:
 - *scan group token* (8 bits) A token allowing to group together scan results of the same scan group;
 - *NAV index* (5 bits) A decrementing counter allowing to identify a scan result in its scan group;
 - *Detected SV* (3 bits) Value indicating the number of satellites (Space Vehicules) detected in the corresponding scan result. This field is encoded as the actual number of satellites detected minus 3. So that the field's value is in the range [0, 7] which means that the actual number of satellites is in the range [3, 10];
-- *nav message* (variable length) The actual NAV message obtained from the LR1110.
+- *nav message* (variable length) The actual NAV message obtained from the LR11XX.
 
 All together, the payload format of uplinks is the following
 
