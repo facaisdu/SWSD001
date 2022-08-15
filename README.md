@@ -47,7 +47,7 @@ Examples can be compiled with either [Keil MDK ARM](https://www2.keil.com/mdk5) 
 
 ### Firmware
 
-The LoRa Basics Modem library requires the LR1110 runs the transceiver firmware version 0x0307 ([available here](https://github.com/Lora-net/radio_firmware_images/tree/master/lr1110/transceiver)).
+The LoRa Basics Modem library requires the LR1110 runs the transceiver firmware version 0x0307 ([available here](https://github.com/Lora-net/radio_firmware_images/tree/master/lr1110/transceiver)) or LR1120 runs version 0x0101.
 
 To update the transceiver with the desired firmware version, please use [the updater tool application](https://github.com/Lora-net/lr1110_updater_tool/).
 
